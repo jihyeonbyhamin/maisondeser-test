@@ -1,8 +1,18 @@
 {
   "updatedAt": null,
-  "items": [
+  "ticker": [
     { "category": "딱딱이 복숭아", "price": 15900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
     { "category": "찰옥수수", "price": 9900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
     { "category": "수박", "price": 22900, "url": "https://shop.coupang.com/A01623310", "trend": "same" }
+  ],
+  "seasonNew": [
+    { "category": "딱딱이 복숭아", "optionLabel": "1kg", "price": 15900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
+    { "category": "찰옥수수", "optionLabel": "10개입", "price": 9900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
+    { "category": "꿀참외", "optionLabel": "2kg", "price": 13900, "url": "https://shop.coupang.com/A01623310", "trend": "same" }
+  ],
+  "seasonBest": [
+    { "category": "완숙 토마토", "optionLabel": "2kg", "price": 12900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
+    { "category": "수박", "optionLabel": "1통", "price": 22900, "url": "https://shop.coupang.com/A01623310", "trend": "same" },
+    { "category": "샤인머스캣", "optionLabel": "1kg", "price": 18900, "url": "https://shop.coupang.com/A01623310", "trend": "same" }
   ]
 }

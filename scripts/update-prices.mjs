@@ -67,19 +67,9 @@ async function searchProduct(keyword) {
   };
 }
 
-async function main() {
-  const config = JSON.parse(await fs.readFile(CONFIG_PATH, 'utf8'));
-
-  let previous = { items: [] };
-  try {
-    previous = JSON.parse(await fs.readFile(OUTPUT_PATH, 'utf8'));
-  } catch {
-    // no previous data yet, that's fine
-  }
-  const prevByCategory = Object.fromEntries((previous.items || []).map((i) => [i.category, i]));
-
+async function fetchGroup(entries, prevByCategory) {
   const items = [];
-  for (const entry of config) {
+  for (const entry of entries) {
     const prev = prevByCategory[entry.category];
     try {
       const result = await searchProduct(entry.keyword);
@@ -95,6 +85,7 @@ async function main() {
       }
       items.push({
         category: entry.category,
+        ...(entry.optionLabel ? { optionLabel: entry.optionLabel } : {}),
         price: result.price,
         url: entry.url || result.url,
         trend,
@@ -106,14 +97,30 @@ async function main() {
     // Coupang Partners API allows up to 10 calls/hour — space calls out.
     await new Promise((r) => setTimeout(r, 1500));
   }
+  return items;
+}
 
-  const output = {
-    updatedAt: new Date().toISOString(),
-    items,
-  };
+async function main() {
+  const config = JSON.parse(await fs.readFile(CONFIG_PATH, 'utf8'));
+
+  let previous = {};
+  try {
+    previous = JSON.parse(await fs.readFile(OUTPUT_PATH, 'utf8'));
+  } catch {
+    // no previous data yet, that's fine
+  }
+
+  const groups = ['ticker', 'seasonNew', 'seasonBest'];
+  const output = { updatedAt: new Date().toISOString() };
+
+  for (const group of groups) {
+    const prevByCategory = Object.fromEntries((previous[group] || []).map((i) => [i.category, i]));
+    output[group] = await fetchGroup(config[group] || [], prevByCategory);
+  }
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2) + '\n');
-  console.log(`Wrote ${items.length} item(s) to ${OUTPUT_PATH}`);
+  const total = groups.reduce((sum, g) => sum + output[g].length, 0);
+  console.log(`Wrote ${total} item(s) across ${groups.length} group(s) to ${OUTPUT_PATH}`);
 }
 
 main().catch((err) => {

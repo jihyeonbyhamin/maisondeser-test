@@ -1,5 +1,17 @@
-[
-  { "category": "딱딱이 복숭아", "keyword": "메종드세르 딱딱이 복숭아" },
-  { "category": "찰옥수수", "keyword": "메종드세르 찰옥수수" },
-  { "category": "수박", "keyword": "메종드세르 수박" }
-]
+{
+  "ticker": [
+    { "category": "딱딱이 복숭아", "keyword": "메종드세르 딱딱이 복숭아" },
+    { "category": "찰옥수수", "keyword": "메종드세르 찰옥수수" },
+    { "category": "수박", "keyword": "메종드세르 수박" }
+  ],
+  "seasonNew": [
+    { "category": "딱딱이 복숭아", "keyword": "메종드세르 딱딱이 복숭아", "optionLabel": "1kg" },
+    { "category": "찰옥수수", "keyword": "메종드세르 찰옥수수", "optionLabel": "10개입" },
+    { "category": "꿀참외", "keyword": "메종드세르 꿀참외", "optionLabel": "2kg" }
+  ],
+  "seasonBest": [
+    { "category": "완숙 토마토", "keyword": "메종드세르 완숙 토마토", "optionLabel": "2kg" },
+    { "category": "수박", "keyword": "메종드세르 수박", "optionLabel": "1통" },
+    { "category": "샤인머스캣", "keyword": "메종드세르 샤인머스캣", "optionLabel": "1kg" }
+  ]
+}
