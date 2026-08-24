@@ -1,6 +1,6 @@
 {
   "updatedAt": null,
-  "seasonUpdatedAt": "2026-08-24T08:55:36.328Z",
+  "seasonUpdatedAt": "2026-08-24T09:30:55.790Z",
   "ticker": [
     {
       "category": "딱딱이 복숭아",
@@ -25,34 +25,40 @@
     {
       "category": "오이",
       "price": 9900,
-      "url": "https://www.coupang.com/vp/products/9685323934?itemId=28964075692&searchId=5fcdc6b5295c43099cb359aeb21c9c24&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95765611058"
+      "url": "https://www.coupang.com/vp/products/9685323934?itemId=28964075692&searchId=5fcdc6b5295c43099cb359aeb21c9c24&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95765611058",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/b93b/a0599b93b08096a7bf478fd8eb38f6bc69648525eb288eece659ee6c5223.png"
     },
     {
       "category": "밤호박",
       "price": 7510,
-      "url": "https://www.coupang.com/vp/products/9683988780?itemId=28959235067&searchId=5fcdc6b5295c43099cb359aeb21c9c24&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889473204"
+      "url": "https://www.coupang.com/vp/products/9683988780?itemId=28959235067&searchId=5fcdc6b5295c43099cb359aeb21c9c24&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889473204",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/image_audit/stage/manual/3a301a4f2680c7fb11f658d37fcf224ca1bc800a5827ff9dca4ede02a401_1786413141255.png"
     },
     {
       "category": "감자",
       "price": 9900,
-      "url": "https://www.coupang.com/vp/products/9641099160?itemId=28807409482&searchId=b88ccb8a0c4c456d8c77b4b3c73a6ce8&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95742543285"
+      "url": "https://www.coupang.com/vp/products/9641099160?itemId=28807409482&searchId=b88ccb8a0c4c456d8c77b4b3c73a6ce8&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95742543285",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/76ed/c7127dfe732cbc4e19494f57a9dea2fea47f0380203e39a90b2c93f50351.png"
     }
   ],
   "seasonBest": [
     {
       "category": "복숭아",
       "price": 11600,
-      "url": "https://www.coupang.com/vp/products/9683957648?itemId=28959130617&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889372490"
+      "url": "https://www.coupang.com/vp/products/9683957648?itemId=28959130617&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889372490",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/413b/4cc61289d3016da44b4131ef4c963e9874995b9b950d003f7e78f20e204f.png"
     },
     {
       "category": "옥수수",
       "price": 7890,
-      "url": "https://www.coupang.com/vp/products/9683965963?itemId=28959158847&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889398757"
+      "url": "https://www.coupang.com/vp/products/9683965963?itemId=28959158847&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95889398757",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/4044/6a9cc79682ea9a428bfa57b4d12c1b9389c7ec34d9c4f9b971961fa2df90.png"
     },
     {
       "category": "완숙 토마토",
       "price": 17890,
-      "url": "https://www.coupang.com/vp/products/9685284744?itemId=28963960181&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95893922121"
+      "url": "https://www.coupang.com/vp/products/9685284744?itemId=28963960181&searchId=a0b8eece794f48c8852ebc9f3f11d84f&sourceType=brandstore_sdp_atf-baseline_list&storeId=298394&subSourceType=brandstore_sdp_atf-baseline_list&vendorId=A01623310&vendorItemId=95893922121",
+      "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/fd60/67156611111ef4f49a156330e91f0d531f7ae4b79a7ec8f027d838db294e.png"
     }
   ]
 }

@@ -8,10 +8,12 @@
 // can fetch it anonymously via Google's XLSX export endpoint (no API key
 // needed). Layout expected (see scripts/products.config.json for the id):
 //   row 1: merged group headers ("신규제철" / "best")
-//   row 2: column headers ("상품","가격","링크" x2)
-//   row 3+: data — B/C/D = 신규제철 상품/가격/링크, E/F/G = best 상품/가격/링크
+//   row 2: column headers ("상품","가격","링크","사진" x2)
+//   row 3+: data — B/C/D/E = 신규제철 상품/가격/링크/사진, F/G/H/I = best 상품/가격/링크/사진
 // The "링크" cell's displayed text is a Coupang product title; the actual
 // product URL is read from the cell's hyperlink target, not its text.
+// The "사진" cell should contain a plain image URL (jpg/png) — optional; if
+// empty or missing, the site falls back to an emoji icon for that card.
 import fs from 'node:fs/promises';
 import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
@@ -129,7 +131,7 @@ function parseRels(xml) {
   return rels;
 }
 
-function extractGroup(cells, hyperlinks, rels, nameCol, priceCol, linkCol) {
+function extractGroup(cells, hyperlinks, rels, nameCol, priceCol, linkCol, imageCol) {
   const items = [];
   let emptyStreak = 0;
   for (let row = 3; row < 3 + MAX_DATA_ROWS && emptyStreak < MAX_EMPTY_STREAK; row++) {
@@ -143,7 +145,10 @@ function extractGroup(cells, hyperlinks, rels, nameCol, priceCol, linkCol) {
     const linkRef = `${linkCol}${row}`;
     const rId = hyperlinks[linkRef];
     const url = (rId && rels[rId]) || FALLBACK_URL;
-    items.push({ category: String(name).trim(), price: Math.round(Number(price)), url });
+    const item = { category: String(name).trim(), price: Math.round(Number(price)), url };
+    const image = imageCol && cells[`${imageCol}${row}`];
+    if (image) item.image = String(image).trim();
+    items.push(item);
   }
   return items;
 }
@@ -175,8 +180,8 @@ async function main() {
     ? parseRels(entries['xl/worksheets/_rels/sheet1.xml.rels'].toString('utf8'))
     : {};
 
-  const seasonNew = extractGroup(cells, hyperlinks, rels, 'B', 'C', 'D');
-  const seasonBest = extractGroup(cells, hyperlinks, rels, 'E', 'F', 'G');
+  const seasonNew = extractGroup(cells, hyperlinks, rels, 'B', 'C', 'D', 'E');
+  const seasonBest = extractGroup(cells, hyperlinks, rels, 'F', 'G', 'H', 'I');
 
   if (!seasonNew.length && !seasonBest.length) {
     throw new Error('Parsed 0 products from the season sheet — check the sheet layout.');
