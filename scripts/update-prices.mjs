@@ -2,6 +2,8 @@
 // Fetches current prices from the Coupang Partners product-search API and
 // writes them to data/prices.json for the site's price ticker to read.
 // Requires COUPANG_ACCESS_KEY / COUPANG_SECRET_KEY env vars (see .github/workflows/update-prices.yml).
+// Only owns the "ticker" group — seasonNew/seasonBest are synced from the
+// Google Sheet by scripts/update-season.mjs and left untouched here.
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -110,8 +112,8 @@ async function main() {
     // no previous data yet, that's fine
   }
 
-  const groups = ['ticker', 'seasonNew', 'seasonBest'];
-  const output = { updatedAt: new Date().toISOString() };
+  const groups = ['ticker'];
+  const output = { ...previous, updatedAt: new Date().toISOString() };
 
   for (const group of groups) {
     const prevByCategory = Object.fromEntries((previous[group] || []).map((i) => [i.category, i]));
