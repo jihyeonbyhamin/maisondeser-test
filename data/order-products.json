@@ -1,0 +1,225 @@
+{
+  "updatedAt": "2026-08-26T03:34:14.739Z",
+  "products": [
+    {
+      "category": "수박",
+      "label": "제주 수박 3~4kg",
+      "price": 9900
+    },
+    {
+      "category": "수박",
+      "label": "제주 수박 4~5kg",
+      "price": 12500
+    },
+    {
+      "category": "수박",
+      "label": "가정용 수박 5~6kg 내외",
+      "price": 14900
+    },
+    {
+      "category": "수박",
+      "label": "마스터 가정용 수박 7~8KG",
+      "price": 17900
+    },
+    {
+      "category": "참외",
+      "label": "참외 대과 3kg",
+      "price": 15900
+    },
+    {
+      "category": "참외",
+      "label": "참외 혼합과 5kg (박스포함)",
+      "price": 16980
+    },
+    {
+      "category": "참외",
+      "label": "참외 대과 5키로",
+      "price": 44000
+    },
+    {
+      "category": "참외",
+      "label": "참외 혼합과 10kg (박스포함)",
+      "price": 26980
+    },
+    {
+      "category": "바다장어",
+      "label": "장어 1kg",
+      "price": 16950
+    },
+    {
+      "category": "바다장어",
+      "label": "장어 2kg",
+      "price": 29600
+    },
+    {
+      "category": "바다장어",
+      "label": "장어 3kg",
+      "price": 41600
+    },
+    {
+      "category": "바다장어",
+      "label": "장어 5kg",
+      "price": 65600
+    },
+    {
+      "category": "자두",
+      "label": "노지 도담자두 1kg 소과",
+      "price": 8900
+    },
+    {
+      "category": "자두",
+      "label": "노지 도담자두 3kg 소과",
+      "price": 14900
+    },
+    {
+      "category": "자두",
+      "label": "피자두5kg내외(개당40g내외/115과내외)(포장재포함)",
+      "price": 26900
+    },
+    {
+      "category": "자두",
+      "label": "노지자두 10kg",
+      "price": 64900
+    },
+    {
+      "category": "감자",
+      "label": "감자 혼합 3kg",
+      "price": 7900
+    },
+    {
+      "category": "감자",
+      "label": "감자 혼합 5kg",
+      "price": 8900
+    },
+    {
+      "category": "감자",
+      "label": "(특가) 수미감자 대 5kg",
+      "price": 15900
+    },
+    {
+      "category": "감자",
+      "label": "국내산 햇감자 소 10kg",
+      "price": 11900
+    },
+    {
+      "category": "오이",
+      "label": "백다다기 오이백다다기오이(상) 1kg",
+      "price": 9900
+    },
+    {
+      "category": "오이",
+      "label": "백오이2kg내외(10개내외)",
+      "price": 9900
+    },
+    {
+      "category": "오이",
+      "label": "백오이5kg내외(22개내외 포장재포함)",
+      "price": 17900
+    },
+    {
+      "category": "오이",
+      "label": "백오이10kg내외(45개내외포장재포함)",
+      "price": 27900
+    },
+    {
+      "category": "옥수수",
+      "label": "미백 찰옥수수 중품 (8~14cm) 5개",
+      "price": 7500
+    },
+    {
+      "category": "옥수수",
+      "label": "미백 찰옥수수 중품 (8~14cm) 10개",
+      "price": 7900
+    },
+    {
+      "category": "옥수수",
+      "label": "미백 찰옥수수 중품 (8~14cm) 20개",
+      "price": 11900
+    },
+    {
+      "category": "옥수수",
+      "label": "미백 찰옥수수 중품 (8~14cm) 30개",
+      "price": 16900
+    },
+    {
+      "category": "밤호박",
+      "label": "제주 미니밤호박 (보우짱) 로얄과 1kg",
+      "price": 7900
+    },
+    {
+      "category": "밤호박",
+      "label": "보우짱 미니밤호박 3kg 로얄과 (박스포함)",
+      "price": 11900
+    },
+    {
+      "category": "밤호박",
+      "label": "제주 미니 밤호박 로얄과 5kg",
+      "price": 15900
+    },
+    {
+      "category": "밤호박",
+      "label": "제주 미니 밤호박 로얄과 10kg",
+      "price": 24980
+    },
+    {
+      "category": "완숙",
+      "label": "완숙 토마토 1kg / 소과",
+      "price": 8900
+    },
+    {
+      "category": "완숙",
+      "label": "완숙 토마토 3kg / 소과",
+      "price": 15900
+    },
+    {
+      "category": "완숙",
+      "label": "완숙토마토 5kg 사이즈 랜덤",
+      "price": 19900
+    },
+    {
+      "category": "완숙",
+      "label": "완숙토마토 10kg / 혼합과",
+      "price": 37900
+    },
+    {
+      "category": "딱딱이",
+      "label": "백도 딱딱이 복숭아 소과 2kg (10-14과 내외)",
+      "price": 11890
+    },
+    {
+      "category": "딱딱이",
+      "label": "딱딱이 복숭아 3kg (20과내외)",
+      "price": 14890
+    },
+    {
+      "category": "딱딱이",
+      "label": "딱딱이 백도복숭아 4kg / 31-35과",
+      "price": 17890
+    },
+    {
+      "category": "딱딱이",
+      "label": "가정용 딱딱이 복숭아 5kg",
+      "price": 22890
+    },
+    {
+      "category": "샤인",
+      "label": "샤인머스캣 500g",
+      "price": 7490
+    },
+    {
+      "category": "샤인",
+      "label": "샤인머스캣 1kg",
+      "price": 9900
+    },
+    {
+      "category": "샤인",
+      "label": "샤인머스캣 2kg",
+      "price": 14900
+    },
+    {
+      "category": "샤인",
+      "label": "샤인머스캣 4kg",
+      "price": 26900
+    }
+  ]
+}

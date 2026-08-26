@@ -7,5 +7,12 @@
   "seasonSheet": {
     "spreadsheetId": "1xeBiwrYx_YieTLFKFw8c4C6oJsm5ut4O-fK_ZRfKcnY",
     "gid": "0"
+  },
+  "orderProductsSheet": {
+    "spreadsheetId": "1xG-GJOhEdg9KS7G7hcbmWLrEMo1nFV40",
+    "sheetName": "메종드세르",
+    "categories": [
+      "수박", "참외", "바다장어", "자두", "감자", "오이", "옥수수", "밤호박", "완숙", "딱딱이", "샤인"
+    ]
   }
 }
