@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" rel="stylesheet">
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
     (function(){
       if(!window.matchMedia('(max-width: 900px)').matches)return;
@@ -36,7 +37,8 @@
       <form class="order-form" id="orderForm" novalidate>
         <label>이름<input type="text" name="name" id="orderName" autocomplete="name" placeholder="주문자 성함" required></label>
         <label>전화번호<input type="tel" name="phone" id="orderPhone" autocomplete="tel" placeholder="010-0000-0000" required></label>
-        <label>주소<input type="text" name="address" id="orderAddress" autocomplete="street-address" placeholder="배송받으실 주소" required></label>
+        <label>주소<div class="order-address-group"><input type="text" name="address" id="orderAddress" autocomplete="street-address" placeholder="주소입력 버튼을 눌러 주소를 검색해주세요" required readonly><button type="button" class="order-address-btn" id="orderAddressBtn">주소입력</button></div></label>
+        <label>상세주소<input type="text" name="addressDetail" id="orderAddressDetail" autocomplete="address-line2" placeholder="동/호수 등 (선택)"></label>
         <label>상품 선택<select name="product" id="orderProduct" required><option value="" disabled selected>상품을 불러오는 중…</option></select></label>
         <div class="order-row">
           <label class="qty">주문 개수<input type="number" name="quantity" id="orderQty" min="1" step="1" value="1" required></label>
@@ -93,6 +95,27 @@
       var form=document.getElementById('orderForm');
       var note=document.getElementById('orderNote');
       var submitBtn=document.getElementById('orderSubmit');
+      var addressInput=document.getElementById('orderAddress');
+      var addressDetailInput=document.getElementById('orderAddressDetail');
+      var addressBtn=document.getElementById('orderAddressBtn');
+
+      addressBtn.addEventListener('click',function(){
+        if(typeof daum==='undefined'||!daum.Postcode){
+          alert('주소 검색 서비스를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+          return;
+        }
+        new daum.Postcode({
+          oncomplete:function(data){
+            var addr=data.roadAddress||data.jibunAddress;
+            var extra='';
+            if(data.bname&&/[동|로|가]$/.test(data.bname))extra+=data.bname;
+            if(data.buildingName&&data.apartment==='Y')extra+=(extra?', ':'')+data.buildingName;
+            if(extra)addr+=' ('+extra+')';
+            addressInput.value=addr;
+            addressDetailInput.focus();
+          }
+        }).open();
+      });
 
       function won(n){return '₩'+Number(n||0).toLocaleString('ko-KR');}
 
@@ -152,7 +175,7 @@
         var payload={
           name:document.getElementById('orderName').value.trim(),
           phone:document.getElementById('orderPhone').value.trim(),
-          address:document.getElementById('orderAddress').value.trim(),
+          address:(addressInput.value.trim()+(addressDetailInput.value.trim()?' '+addressDetailInput.value.trim():'')).trim(),
           product:select.value,
           quantity:qty,
           totalPrice:price*qty

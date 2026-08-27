@@ -23,6 +23,11 @@ body{overflow-x:hidden;word-break:keep-all}section{scroll-margin-top:110px}a:foc
 .order-form label{font-size:12px;font-weight:600;color:var(--ink);display:flex;flex-direction:column;gap:7px}
 .order-form input,.order-form select{width:100%;border:1px solid var(--border);background:var(--paper);color:var(--ink);padding:13px 14px;font:13px/1.6 inherit;border-radius:5px}
 .order-form input:focus,.order-form select:focus{outline:1px solid var(--green-fg)}
+.order-form input[readonly]{background:var(--soft);color:#607068;cursor:default}
+.order-address-group{display:flex;gap:10px}
+.order-address-group input{flex:1;min-width:0}
+.order-address-btn{flex:none;border:1px solid var(--green-fg);background:transparent;color:var(--ink);padding:0 18px;border-radius:5px;font-size:12px;cursor:pointer;white-space:nowrap;transition:.2s}
+.order-address-btn:hover{background:var(--green);color:#fff}
 .order-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23607068'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%23607068' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .order-row{display:flex;gap:14px}
 .order-row .qty{max-width:140px}
