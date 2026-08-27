@@ -119,7 +119,7 @@ function findOrdersByPhone_(sheet, phone) {
 function rowToOrder_(sheet, row, rowValues) {
   var values = rowValues || sheet.getRange(row, 1, 1, COL.ORDER_ID).getValues()[0];
   return {
-    timestamp: String(values[COL.TIMESTAMP - 1] || ''),
+    timestamp: formatTimestamp_(values[COL.TIMESTAMP - 1]),
     product: String(values[COL.PRODUCT - 1] || ''),
     quantity: Number(values[COL.QTY - 1]) || 0,
     name: String(values[COL.NAME - 1] || ''),
@@ -128,6 +128,13 @@ function rowToOrder_(sheet, row, rowValues) {
     totalPrice: Number(values[COL.PRICE - 1]) || 0,
     orderId: String(values[COL.ORDER_ID - 1] || '')
   };
+}
+
+function formatTimestamp_(value) {
+  if (value instanceof Date) {
+    return Utilities.formatDate(value, Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+  }
+  return String(value || '');
 }
 
 function normalizePhone_(phone) {
