@@ -39,4 +39,26 @@ body{overflow-x:hidden;word-break:keep-all}section{scroll-margin-top:110px}a:foc
 .order-guide-item span{flex:none;font:11px Georgia;color:var(--green-fg);border:1px solid var(--green-fg);width:22px;height:22px;border-radius:50%;display:grid;place-items:center}
 .order-price-note{font-size:11px;color:#829087;line-height:1.7}
 @media(max-width:1000px){.order-section{grid-template-columns:1fr;gap:40px}.order-aside{position:static}}
+.status-hero{padding:150px clamp(22px,5vw,72px) 40px;background:linear-gradient(105deg,var(--cream) 0 60%,var(--hero-accent) 60%)}
+.status-hero .eyebrow{color:#78877e}
+.status-hero h1{font:500 clamp(30px,3.6vw,46px)/1.3 Georgia,"Noto Serif KR",serif;letter-spacing:-.04em;margin:16px 0 14px}
+.status-hero p{font-size:14px;line-height:1.85;color:#607068;max-width:560px;margin:0}
+.status-section{padding:20px clamp(22px,5vw,72px) 100px;max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.status-lookup{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:34px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px}
+.status-lookup label{font-size:12px;font-weight:600;color:var(--ink);display:flex;flex-direction:column;gap:7px}
+.status-lookup input{width:100%;border:1px solid var(--border);background:var(--paper);color:var(--ink);padding:13px 14px;font:13px/1.6 inherit;border-radius:5px}
+.status-lookup input:focus{outline:1px solid var(--green-fg)}
+.status-lookup button{margin-top:4px;border:none;cursor:pointer;border-radius:4px}
+.status-card{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px}
+.status-card dl{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;margin:0;font-size:13px}
+.status-card dt{color:#78877e}
+.status-card dd{margin:0;color:var(--ink);font-weight:600;word-break:break-all}
+.status-note{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border);padding-top:16px}
+.status-note>label{font-size:12px;font-weight:600;color:var(--ink)}
+.status-note textarea{width:100%;border:1px solid var(--border);background:var(--paper);color:var(--ink);padding:12px 14px;font:13px/1.6 inherit;border-radius:5px;resize:vertical;min-height:70px}
+.status-note textarea:focus{outline:1px solid var(--green-fg)}
+.status-note button{align-self:flex-start;border:none;cursor:pointer;border-radius:4px}
+.status-note button:disabled{opacity:.55;cursor:not-allowed}
+.status-empty{font-size:13px;color:#68776f;text-align:center;padding:20px 0}
+@media(max-width:720px){.status-hero{padding:118px 20px 30px}.status-section{padding:16px 20px 70px}.status-lookup,.status-card{padding:22px}}
 @media(max-width:720px){.order-hero{padding:118px 20px 30px}.order-section{padding:16px 20px 70px}.order-form{padding:22px}.order-row{flex-direction:column}.order-row .qty{max-width:none}}

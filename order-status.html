@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문 조회 | 메종드세르</title>
+  <meta name="description" content="접수하신 주문 내역을 전화번호로 조회하고, 수정 요청을 남길 수 있는 페이지입니다.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%91%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" rel="stylesheet">
+  <script>
+    (function(){
+      if(!window.matchMedia('(max-width: 900px)').matches)return;
+      if('scrollRestoration' in history)history.scrollRestoration='manual';
+      document.documentElement.style.scrollBehavior='auto';
+      function startAtTop(){window.scrollTo(0,0);}
+      startAtTop();
+      window.addEventListener('pageshow',function(){
+        startAtTop();
+        requestAnimationFrame(function(){requestAnimationFrame(startAtTop);});
+        setTimeout(function(){
+          startAtTop();
+          document.documentElement.style.removeProperty('scroll-behavior');
+        },120);
+      },{once:true});
+    })();
+  </script>
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+  <header class="header"><a class="brand" href="index.html#top"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></a><nav><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a><a href="index.html#story">브랜드</a><a href="index.html#process">선별과 배송</a><a href="index.html#season-new">제철 과일</a><a href="index.html#faq">이용 안내</a></nav><div class="header-actions"><a class="nav-cta" href="index.html#contact">문의하기</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환">🌙</button></div></header>
+  <main>
+    <section class="status-hero"><p class="eyebrow">ORDER STATUS · 주문 조회</p><h1 id="statusTitle">주문 내역을 확인해보세요.</h1><p id="statusDesc">주문 접수 시 남기신 전화번호로 조회할 수 있습니다.</p></section>
+    <section class="status-section">
+      <form class="status-lookup" id="phoneForm" hidden>
+        <label>전화번호<input type="tel" id="lookupPhone" autocomplete="tel" placeholder="010-0000-0000" required></label>
+        <button class="button primary" type="submit">주문 조회하기 <span>→</span></button>
+        <p class="order-note error" id="lookupNote" role="status" hidden></p>
+      </form>
+      <div id="orderList"></div>
+    </section>
+  </main>
+  <footer><div class="brand footer-brand"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></div><div class="footer-links"><a href="order.html">직접 주문</a><a href="index.html#process">선별과 배송</a><a href="index.html#faq">이용 안내</a><a href="index.html#contact">문의하기</a></div><p>신선한 계절을 고르고, 정성껏 전합니다.</p><p class="copyright">© 2026 MAISON DE SERRE. ALL RIGHTS RESERVED.</p></footer>
+  <script>
+    (function(){
+      var root=document.documentElement;
+      var btn=document.getElementById('themeToggle');
+      function apply(t){
+        root.setAttribute('data-theme',t);
+        btn.textContent=t==='dark'?'☀️':'🌙';
+        btn.setAttribute('aria-label',t==='dark'?'라이트 모드로 전환':'다크 모드로 전환');
+      }
+      var stored=localStorage.getItem('theme');
+      apply(stored||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+      btn.addEventListener('click',function(){
+        var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+        apply(next);
+        localStorage.setItem('theme',next);
+      });
+    })();
+  </script>
+  <script>
+    (function(){
+      // Same Apps Script Web App URL used in order.html.
+      var ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw3GxiK6mw8ClBBweyKeqZsYfm7SttKzeIUCmV22exVeSqWo-wij96Mv7oxLW0koYdm/exec';
+
+      var titleEl=document.getElementById('statusTitle');
+      var descEl=document.getElementById('statusDesc');
+      var phoneForm=document.getElementById('phoneForm');
+      var lookupPhone=document.getElementById('lookupPhone');
+      var lookupNote=document.getElementById('lookupNote');
+      var orderList=document.getElementById('orderList');
+
+      function won(n){return '₩'+Number(n||0).toLocaleString('ko-KR');}
+
+      function showEmpty(){
+        orderList.innerHTML='';
+        var p=document.createElement('p');
+        p.className='status-empty';
+        p.textContent='조회된 주문 내역이 없습니다.';
+        orderList.appendChild(p);
+      }
+
+      function buildCard(order){
+        var card=document.createElement('article');
+        card.className='status-card';
+
+        var dl=document.createElement('dl');
+        [
+          ['접수일시',order.timestamp],
+          ['상품',order.product],
+          ['개수',order.quantity+'개'],
+          ['이름',order.name],
+          ['전화번호',order.phone],
+          ['주소',order.address],
+          ['주문 금액',won(order.totalPrice)]
+        ].forEach(function(f){
+          var dt=document.createElement('dt');dt.textContent=f[0];
+          var dd=document.createElement('dd');dd.textContent=f[1];
+          dl.appendChild(dt);dl.appendChild(dd);
+        });
+        card.appendChild(dl);
+
+        var noteWrap=document.createElement('div');
+        noteWrap.className='status-note';
+        var label=document.createElement('label');
+        label.textContent='수정사항이 있으시면 남겨주세요';
+        var textarea=document.createElement('textarea');
+        textarea.placeholder='예) 주소를 OO로 변경해주세요';
+        var noteBtn=document.createElement('button');
+        noteBtn.className='button primary';
+        noteBtn.type='button';
+        noteBtn.textContent='수정 요청 보내기';
+        var msg=document.createElement('p');
+        msg.className='order-note';
+        msg.hidden=true;
+
+        noteBtn.addEventListener('click',function(){
+          var text=textarea.value.trim();
+          if(!text)return;
+          if(!order.orderId){
+            msg.hidden=false;
+            msg.className='order-note error';
+            msg.textContent='이 주문은 수정 요청을 보낼 수 없습니다.';
+            return;
+          }
+          noteBtn.disabled=true;
+          fetch(ORDER_ENDPOINT,{
+            method:'POST',
+            headers:{'Content-Type':'text/plain;charset=utf-8'},
+            body:JSON.stringify({action:'note',orderId:order.orderId,note:text})
+          })
+            .then(function(res){return res.json().catch(function(){return {ok:res.ok};});})
+            .then(function(result){
+              msg.hidden=false;
+              if(result&&result.ok!==false){
+                msg.className='order-note';
+                msg.textContent='수정 요청이 접수되었습니다.';
+                textarea.value='';
+              }else{
+                msg.className='order-note error';
+                msg.textContent='요청 전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+              }
+            })
+            .catch(function(){
+              msg.hidden=false;
+              msg.className='order-note error';
+              msg.textContent='요청 전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+            })
+            .finally(function(){noteBtn.disabled=false;});
+        });
+
+        noteWrap.appendChild(label);
+        noteWrap.appendChild(textarea);
+        noteWrap.appendChild(noteBtn);
+        noteWrap.appendChild(msg);
+        card.appendChild(noteWrap);
+
+        return card;
+      }
+
+      function renderOrders(orders){
+        orderList.innerHTML='';
+        if(!orders||!orders.length){showEmpty();return;}
+        orders.forEach(function(order){orderList.appendChild(buildCard(order));});
+      }
+
+      if(!ORDER_ENDPOINT||ORDER_ENDPOINT.indexOf('REPLACE_WITH')===0){
+        titleEl.textContent='주문 조회 연동이 아직 설정되지 않았습니다.';
+        descEl.textContent='관리자에게 문의해 주세요.';
+        return;
+      }
+
+      var orderId=new URLSearchParams(location.search).get('order');
+
+      if(orderId){
+        titleEl.textContent='주문이 접수되었습니다.';
+        descEl.textContent='아래 내용으로 주문이 접수되었습니다.';
+        fetch(ORDER_ENDPOINT+'?orderId='+encodeURIComponent(orderId))
+          .then(function(res){return res.json();})
+          .then(function(result){
+            renderOrders(result&&result.ok&&result.order?[result.order]:[]);
+          })
+          .catch(showEmpty);
+      }else{
+        phoneForm.hidden=false;
+        phoneForm.addEventListener('submit',function(e){
+          e.preventDefault();
+          lookupNote.hidden=true;
+          var phone=lookupPhone.value.trim();
+          if(!phone)return;
+          orderList.innerHTML='';
+          fetch(ORDER_ENDPOINT+'?phone='+encodeURIComponent(phone))
+            .then(function(res){return res.json();})
+            .then(function(result){
+              if(result&&result.ok){
+                renderOrders(result.orders||[]);
+              }else{
+                lookupNote.hidden=false;
+                lookupNote.textContent='조회에 실패했습니다. 잠시 후 다시 시도해주세요.';
+              }
+            })
+            .catch(function(){
+              lookupNote.hidden=false;
+              lookupNote.textContent='조회에 실패했습니다. 잠시 후 다시 시도해주세요.';
+            });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
