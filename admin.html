@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>관리자 | 메종드세르</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%91%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+  <header class="header"><a class="brand" href="index.html#top"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></a><nav><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a></nav><div class="header-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환">🌙</button></div></header>
+  <main>
+    <section class="status-hero"><p class="eyebrow">ADMIN · 관리자 페이지</p><h1>주문 관리</h1><p>입금을 확인하시면 상태를 바꿔주세요. 바로 고객 조회 화면에 반영됩니다.</p></section>
+    <section class="status-section admin-section">
+      <form class="status-lookup" id="loginForm">
+        <label>관리자 비밀번호<input type="password" id="adminKeyInput" autocomplete="current-password" required></label>
+        <button class="button primary" type="submit">로그인</button>
+        <p class="order-note error" id="loginNote" role="status" hidden></p>
+      </form>
+      <div id="adminPanel" hidden>
+        <div class="admin-toolbar">
+          <button class="order-address-btn" id="refreshBtn" type="button">새로고침</button>
+          <button class="order-address-btn" id="logoutBtn" type="button">로그아웃</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr><th>접수일시</th><th>이름</th><th>전화번호</th><th>주소</th><th>상품</th><th>개수</th><th>금액</th><th>수정요청</th><th>상태</th></tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </div>
+        <p class="status-empty" id="adminEmpty" hidden>주문 내역이 없습니다.</p>
+      </div>
+    </section>
+  </main>
+  <footer><div class="brand footer-brand"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></div><div class="footer-links"><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a></div><p>신선한 계절을 고르고, 정성껏 전합니다.</p><p class="copyright">© 2026 MAISON DE SERRE. ALL RIGHTS RESERVED.</p></footer>
+  <script>
+    (function(){
+      var root=document.documentElement;
+      var btn=document.getElementById('themeToggle');
+      function apply(t){
+        root.setAttribute('data-theme',t);
+        btn.textContent=t==='dark'?'☀️':'🌙';
+        btn.setAttribute('aria-label',t==='dark'?'라이트 모드로 전환':'다크 모드로 전환');
+      }
+      var stored=localStorage.getItem('theme');
+      apply(stored||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+      btn.addEventListener('click',function(){
+        var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+        apply(next);
+        localStorage.setItem('theme',next);
+      });
+    })();
+  </script>
+  <script>
+    (function(){
+      // Same Apps Script Web App URL used in order.html / order-status.html.
+      var ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw3GxiK6mw8ClBBweyKeqZsYfm7SttKzeIUCmV22exVeSqWo-wij96Mv7oxLW0koYdm/exec';
+      var STORAGE_KEY = 'maisondeserre_admin_key';
+      var STATUS_OPTIONS = ['입금대기','입금확인','취소'];
+
+      var loginForm=document.getElementById('loginForm');
+      var adminKeyInput=document.getElementById('adminKeyInput');
+      var loginNote=document.getElementById('loginNote');
+      var adminPanel=document.getElementById('adminPanel');
+      var tableBody=document.getElementById('adminTableBody');
+      var emptyMsg=document.getElementById('adminEmpty');
+      var refreshBtn=document.getElementById('refreshBtn');
+      var logoutBtn=document.getElementById('logoutBtn');
+
+      var adminKey=localStorage.getItem(STORAGE_KEY)||'';
+
+      function won(n){return '₩'+Number(n||0).toLocaleString('ko-KR');}
+
+      function showLogin(message){
+        adminPanel.hidden=true;
+        loginForm.hidden=false;
+        if(message){loginNote.hidden=false;loginNote.textContent=message;}else{loginNote.hidden=true;}
+      }
+
+      function showPanel(){
+        loginForm.hidden=true;
+        adminPanel.hidden=false;
+      }
+
+      function buildRow(order){
+        var tr=document.createElement('tr');
+        [order.timestamp,order.name,order.phone,order.address,order.product,order.quantity+'개',won(order.totalPrice)].forEach(function(text){
+          var td=document.createElement('td');
+          td.textContent=text;
+          tr.appendChild(td);
+        });
+
+        var noteTd=document.createElement('td');
+        noteTd.className='admin-note';
+        noteTd.textContent=order.note||'-';
+        tr.appendChild(noteTd);
+
+        var statusTd=document.createElement('td');
+        var wrap=document.createElement('div');
+        wrap.className='admin-status-cell';
+        var select=document.createElement('select');
+        STATUS_OPTIONS.forEach(function(s){
+          var opt=document.createElement('option');
+          opt.value=s;opt.textContent=s;
+          if(s===order.status)opt.selected=true;
+          select.appendChild(opt);
+        });
+        var msg=document.createElement('span');
+        msg.className='admin-status-msg';
+
+        select.addEventListener('change',function(){
+          var newStatus=select.value;
+          var previous=order.status;
+          select.disabled=true;
+          msg.textContent='';
+          fetch(ORDER_ENDPOINT,{
+            method:'POST',
+            headers:{'Content-Type':'text/plain;charset=utf-8'},
+            body:JSON.stringify({action:'updateStatus',orderId:order.orderId,status:newStatus,adminKey:adminKey})
+          })
+            .then(function(res){return res.json().catch(function(){return {ok:res.ok};});})
+            .then(function(result){
+              if(result&&result.ok!==false){
+                order.status=newStatus;
+                msg.className='admin-status-msg';
+                msg.textContent='변경됨';
+              }else{
+                select.value=previous;
+                msg.className='admin-status-msg error';
+                msg.textContent='실패';
+              }
+            })
+            .catch(function(){
+              select.value=previous;
+              msg.className='admin-status-msg error';
+              msg.textContent='실패';
+            })
+            .finally(function(){select.disabled=false;});
+        });
+
+        wrap.appendChild(select);
+        wrap.appendChild(msg);
+        statusTd.appendChild(wrap);
+        tr.appendChild(statusTd);
+
+        return tr;
+      }
+
+      function renderOrders(orders){
+        tableBody.innerHTML='';
+        if(!orders||!orders.length){emptyMsg.hidden=false;return;}
+        emptyMsg.hidden=true;
+        orders.forEach(function(order){tableBody.appendChild(buildRow(order));});
+      }
+
+      function loadOrders(){
+        fetch(ORDER_ENDPOINT+'?adminKey='+encodeURIComponent(adminKey))
+          .then(function(res){return res.json();})
+          .then(function(result){
+            if(result&&result.ok){
+              localStorage.setItem(STORAGE_KEY,adminKey);
+              showPanel();
+              renderOrders(result.orders||[]);
+            }else{
+              localStorage.removeItem(STORAGE_KEY);
+              showLogin('비밀번호가 올바르지 않습니다.');
+            }
+          })
+          .catch(function(){
+            showLogin('불러오기에 실패했습니다. 잠시 후 다시 시도해주세요.');
+          });
+      }
+
+      loginForm.addEventListener('submit',function(e){
+        e.preventDefault();
+        adminKey=adminKeyInput.value.trim();
+        if(!adminKey)return;
+        loadOrders();
+      });
+
+      refreshBtn.addEventListener('click',loadOrders);
+
+      logoutBtn.addEventListener('click',function(){
+        adminKey='';
+        localStorage.removeItem(STORAGE_KEY);
+        adminKeyInput.value='';
+        showLogin();
+      });
+
+      if(!ORDER_ENDPOINT||ORDER_ENDPOINT.indexOf('REPLACE_WITH')===0){
+        showLogin('관리자 페이지 연동이 아직 설정되지 않았습니다.');
+        return;
+      }
+
+      if(adminKey){
+        loadOrders();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -77,4 +77,15 @@ body{overflow-x:hidden;word-break:keep-all}section{scroll-margin-top:110px}a:foc
 .status-note button:disabled{opacity:.55;cursor:not-allowed}
 .status-empty{font-size:13px;color:#68776f;text-align:center;padding:20px 0}
 @media(max-width:720px){.status-hero{padding:118px 20px 30px}.status-section{padding:16px 20px 70px}.status-lookup,.status-card{padding:22px}}
+.admin-section{max-width:1100px}
+.admin-toolbar{display:flex;gap:10px;margin-bottom:16px}
+.admin-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;background:var(--paper)}
+.admin-table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
+.admin-table th,.admin-table td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left}
+.admin-table th{background:var(--soft);font-weight:700;color:#53685c}
+.admin-table td.admin-note{white-space:normal;max-width:220px;color:#78877e}
+.admin-table select{border:1px solid var(--border);background:var(--paper);color:var(--ink);padding:6px 8px;border-radius:4px;font:12px inherit}
+.admin-status-cell{display:flex;align-items:center;gap:8px}
+.admin-status-msg{font-size:11px;color:var(--green-fg)}
+.admin-status-msg.error{color:#c0503a}
 @media(max-width:720px){.order-hero{padding:118px 20px 30px}.order-section{padding:16px 20px 70px}.order-form{padding:22px}.order-row{flex-direction:column}.order-row .qty{max-width:none}}

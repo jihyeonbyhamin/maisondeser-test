@@ -10,9 +10,14 @@
 // Column H doubles as the lookup key AND the cell that carries edit-request
 // notes: notes are attached as a Sheets cell Note (메모), never written into
 // a normal cell value, so they never show up as visible sheet data.
-// Column I (상태) is a dropdown — 입금대기/입금확인/취소 — the admin picks
-// directly in the sheet to confirm a deposit or cancel an order. That value
-// is served back to order-status.html so customers see it update live.
+// Column I (상태) is a dropdown — 입금대기/입금확인/취소 — editable directly
+// in the sheet, or from admin.html (doGet ?adminKey=... lists every order;
+// doPost {action:'updateStatus'} changes one). Either way the value is
+// served back to order-status.html so customers see it update live.
+//
+// Before admin.html will work you must set a Script Property named
+// ADMIN_KEY (Project Settings > Script properties in the Apps Script
+// editor) to whatever password you want to gate the admin page with.
 
 var COL = { TIMESTAMP: 1, PRODUCT: 2, QTY: 3, NAME: 4, PHONE: 5, ADDRESS: 6, PRICE: 7, ORDER_ID: 8, STATUS: 9 };
 var STATUS_OPTIONS = ['입금대기', '입금확인', '취소'];
@@ -26,6 +31,10 @@ function doPost(e) {
       return writeNote_(sheet, data);
     }
 
+    if (data.action === 'updateStatus') {
+      return updateStatus_(sheet, data);
+    }
+
     return createOrder_(sheet, data);
   } catch (err) {
     return jsonOutput_({ ok: false, error: String(err) });
@@ -36,6 +45,11 @@ function doGet(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
     var params = (e && e.parameter) || {};
+
+    if (params.adminKey) {
+      if (!isValidAdminKey_(params.adminKey)) return jsonOutput_({ ok: false, error: '인증에 실패했습니다.' });
+      return jsonOutput_({ ok: true, orders: listAllOrders_(sheet) });
+    }
 
     if (params.orderId) {
       return jsonOutput_({ ok: true, order: findOrderById_(sheet, params.orderId) });
@@ -91,6 +105,36 @@ function writeNote_(sheet, data) {
   cell.setNote(existing ? existing + '\n' + entry : entry);
 
   return jsonOutput_({ ok: true });
+}
+
+function updateStatus_(sheet, data) {
+  if (!isValidAdminKey_(data.adminKey)) return jsonOutput_({ ok: false, error: '인증에 실패했습니다.' });
+
+  var row = findRowByOrderId_(sheet, data.orderId);
+  if (!row) return jsonOutput_({ ok: false, error: '주문을 찾을 수 없습니다.' });
+
+  var status = String(data.status || '');
+  if (STATUS_OPTIONS.indexOf(status) === -1) return jsonOutput_({ ok: false, error: '올바르지 않은 상태값입니다.' });
+
+  sheet.getRange(row, COL.STATUS).setValue(status);
+  return jsonOutput_({ ok: true });
+}
+
+function listAllOrders_(sheet) {
+  var values = sheet.getDataRange().getValues();
+  var orders = [];
+  for (var i = values.length - 1; i >= 0; i--) {
+    if (!values[i][COL.ORDER_ID - 1]) continue;
+    var order = rowToOrder_(sheet, i + 1, values[i]);
+    order.note = sheet.getRange(i + 1, COL.ORDER_ID).getNote() || '';
+    orders.push(order);
+  }
+  return orders;
+}
+
+function isValidAdminKey_(key) {
+  var expected = PropertiesService.getScriptProperties().getProperty('ADMIN_KEY');
+  return !!expected && String(key || '') === expected;
 }
 
 function ensureHeader_(sheet) {
