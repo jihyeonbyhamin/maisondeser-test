@@ -33,6 +33,12 @@ body{overflow-x:hidden;word-break:keep-all}section{scroll-margin-top:110px}a:foc
 .order-row .qty{max-width:140px}
 .order-summary-line{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;background:var(--soft);border-radius:5px;font-size:13px;color:#53685c}
 .order-summary-line strong{font-size:17px;color:var(--ink)}
+.order-deposit{border:1px solid var(--border);border-radius:6px;padding:16px 18px;background:var(--soft);display:flex;flex-direction:column;gap:8px}
+.order-deposit-label{margin:0;font-size:11px;letter-spacing:.08em;color:#78877e}
+.order-deposit-account{margin:0;font-size:15px;font-weight:700;color:var(--ink)}
+.order-deposit-amount{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:#53685c}
+.order-deposit-amount strong{font-size:17px;color:var(--ink)}
+.order-deposit-note{margin:0;font-size:12px;line-height:1.7;color:var(--green-fg)}
 .order-form button{margin-top:4px;border:none;cursor:pointer;border-radius:4px}
 .order-form button:disabled{opacity:.55;cursor:not-allowed}
 .order-note{font-size:12px;line-height:1.7;color:var(--green-fg)}

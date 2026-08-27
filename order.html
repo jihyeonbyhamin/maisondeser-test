@@ -44,6 +44,12 @@
           <label class="qty">주문 개수<input type="number" name="quantity" id="orderQty" min="1" step="1" value="1" required></label>
         </div>
         <div class="order-summary-line"><span>예상 주문 금액</span><strong id="orderTotal">₩0</strong></div>
+        <div class="order-deposit">
+          <p class="order-deposit-label">입금 계좌 안내</p>
+          <p class="order-deposit-account">카카오뱅크 3333366418629 (예금주: 메종드세르)</p>
+          <div class="order-deposit-amount"><span>입금하실 금액</span><strong id="orderDepositAmount">₩0</strong></div>
+          <p class="order-deposit-note">입금 확인 후, 접수하신 내용 그대로 주문이 이행됩니다.</p>
+        </div>
         <button class="button primary" type="submit" id="orderSubmit">주문 접수하기 <span>→</span></button>
         <p class="order-note" id="orderNote" role="status" hidden></p>
       </form>
@@ -92,6 +98,7 @@
       var select=document.getElementById('orderProduct');
       var qtyInput=document.getElementById('orderQty');
       var totalEl=document.getElementById('orderTotal');
+      var depositTotalEl=document.getElementById('orderDepositAmount');
       var form=document.getElementById('orderForm');
       var note=document.getElementById('orderNote');
       var submitBtn=document.getElementById('orderSubmit');
@@ -124,6 +131,7 @@
         var price=opt?Number(opt.getAttribute('data-price'))||0:0;
         var qty=Math.max(1,parseInt(qtyInput.value,10)||1);
         totalEl.textContent=won(price*qty);
+        depositTotalEl.textContent=won(price*qty);
       }
 
       function populateProducts(products){
