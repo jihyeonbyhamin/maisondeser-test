@@ -39,6 +39,11 @@ body{overflow-x:hidden;word-break:keep-all}section{scroll-margin-top:110px}a:foc
 .order-deposit-amount{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:#53685c}
 .order-deposit-amount strong{font-size:17px;color:var(--ink)}
 .order-deposit-note{margin:0;font-size:12px;line-height:1.7;color:var(--green-fg)}
+.order-deposit-confirmed{background:color-mix(in srgb,var(--green) 12%,var(--paper));border-color:var(--green-fg)}
+.order-deposit-confirmed .order-deposit-label{color:var(--green-fg);font-size:13px;font-weight:700}
+.order-deposit-cancelled{background:#c0503a14;border-color:#c0503a55}
+.order-deposit-cancelled .order-deposit-label{color:#c0503a;font-size:13px;font-weight:700}
+.order-deposit-cancelled .order-deposit-note{color:#c0503a}
 .order-form button{margin-top:4px;border:none;cursor:pointer;border-radius:4px}
 .order-form button:disabled{opacity:.55;cursor:not-allowed}
 .order-note{font-size:12px;line-height:1.7;color:var(--green-fg)}

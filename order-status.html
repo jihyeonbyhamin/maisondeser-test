@@ -82,6 +82,62 @@
         orderList.appendChild(p);
       }
 
+      function buildStatusBox(order){
+        var status=order.status||'입금대기';
+        var box=document.createElement('div');
+
+        if(status==='입금확인'){
+          box.className='order-deposit order-deposit-confirmed';
+          appendLines(box,[
+            ['p','order-deposit-label','입금 확인 완료'],
+            ['p','order-deposit-note','입금이 확인되었습니다. 접수하신 내용 그대로 주문이 이행됩니다.']
+          ]);
+          return box;
+        }
+
+        if(status==='취소'){
+          box.className='order-deposit order-deposit-cancelled';
+          appendLines(box,[
+            ['p','order-deposit-label','주문 취소'],
+            ['p','order-deposit-note','이 주문은 취소되었습니다. 문의사항은 메종드세르로 연락해주세요.']
+          ]);
+          return box;
+        }
+
+        box.className='order-deposit';
+        var label=document.createElement('p');
+        label.className='order-deposit-label';
+        label.textContent='입금 계좌 안내';
+        var account=document.createElement('p');
+        account.className='order-deposit-account';
+        account.textContent='카카오뱅크 3333366418629 (예금주: 메종드세르)';
+        var amountRow=document.createElement('div');
+        amountRow.className='order-deposit-amount';
+        var amountLabel=document.createElement('span');
+        amountLabel.textContent='입금하실 금액';
+        var amountValue=document.createElement('strong');
+        amountValue.textContent=won(order.totalPrice);
+        amountRow.appendChild(amountLabel);
+        amountRow.appendChild(amountValue);
+        var note=document.createElement('p');
+        note.className='order-deposit-note';
+        note.textContent='입금 확인 후, 접수하신 내용 그대로 주문이 이행됩니다.';
+        box.appendChild(label);
+        box.appendChild(account);
+        box.appendChild(amountRow);
+        box.appendChild(note);
+        return box;
+      }
+
+      function appendLines(parent,lines){
+        lines.forEach(function(l){
+          var el=document.createElement(l[0]);
+          el.className=l[1];
+          el.textContent=l[2];
+          parent.appendChild(el);
+        });
+      }
+
       function buildCard(order){
         var card=document.createElement('article');
         card.className='status-card';
@@ -102,30 +158,7 @@
         });
         card.appendChild(dl);
 
-        var depositWrap=document.createElement('div');
-        depositWrap.className='order-deposit';
-        var depositLabel=document.createElement('p');
-        depositLabel.className='order-deposit-label';
-        depositLabel.textContent='입금 계좌 안내';
-        var depositAccount=document.createElement('p');
-        depositAccount.className='order-deposit-account';
-        depositAccount.textContent='카카오뱅크 3333366418629 (예금주: 메종드세르)';
-        var depositAmountRow=document.createElement('div');
-        depositAmountRow.className='order-deposit-amount';
-        var depositAmountLabel=document.createElement('span');
-        depositAmountLabel.textContent='입금하실 금액';
-        var depositAmountValue=document.createElement('strong');
-        depositAmountValue.textContent=won(order.totalPrice);
-        depositAmountRow.appendChild(depositAmountLabel);
-        depositAmountRow.appendChild(depositAmountValue);
-        var depositNote=document.createElement('p');
-        depositNote.className='order-deposit-note';
-        depositNote.textContent='입금 확인 후, 접수하신 내용 그대로 주문이 이행됩니다.';
-        depositWrap.appendChild(depositLabel);
-        depositWrap.appendChild(depositAccount);
-        depositWrap.appendChild(depositAmountRow);
-        depositWrap.appendChild(depositNote);
-        card.appendChild(depositWrap);
+        card.appendChild(buildStatusBox(order));
 
         var noteWrap=document.createElement('div');
         noteWrap.className='status-note';

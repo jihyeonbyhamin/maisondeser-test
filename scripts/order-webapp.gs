@@ -6,12 +6,16 @@
 // and order-status.html's <script> blocks.
 //
 // Sheet columns (header row 2):
-// A 날짜&시각 | B 주문상품 | C 개수 | D 이름 | E 전화번호 | F 주소 | G 주문가격 | H 주문ID
+// A 날짜&시각 | B 주문상품 | C 개수 | D 이름 | E 전화번호 | F 주소 | G 주문가격 | H 주문ID | I 상태
 // Column H doubles as the lookup key AND the cell that carries edit-request
 // notes: notes are attached as a Sheets cell Note (메모), never written into
 // a normal cell value, so they never show up as visible sheet data.
+// Column I (상태) is a dropdown — 입금대기/입금확인/취소 — the admin picks
+// directly in the sheet to confirm a deposit or cancel an order. That value
+// is served back to order-status.html so customers see it update live.
 
-var COL = { TIMESTAMP: 1, PRODUCT: 2, QTY: 3, NAME: 4, PHONE: 5, ADDRESS: 6, PRICE: 7, ORDER_ID: 8 };
+var COL = { TIMESTAMP: 1, PRODUCT: 2, QTY: 3, NAME: 4, PHONE: 5, ADDRESS: 6, PRICE: 7, ORDER_ID: 8, STATUS: 9 };
+var STATUS_OPTIONS = ['입금대기', '입금확인', '취소'];
 
 function doPost(e) {
   try {
@@ -61,8 +65,14 @@ function createOrder_(sheet, data) {
     String(data.phone || ''),
     String(data.address || ''),
     Number(data.totalPrice) || 0,
-    orderId
+    orderId,
+    STATUS_OPTIONS[0]
   ]);
+
+  var statusCell = sheet.getRange(sheet.getLastRow(), COL.STATUS);
+  statusCell.setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(STATUS_OPTIONS, true).setAllowInvalid(false).build()
+  );
 
   return jsonOutput_({ ok: true, orderId: orderId });
 }
@@ -84,8 +94,11 @@ function writeNote_(sheet, data) {
 }
 
 function ensureHeader_(sheet) {
-  var headerCell = sheet.getRange(2, COL.ORDER_ID);
-  if (!headerCell.getValue()) headerCell.setValue('주문ID');
+  var orderIdHeader = sheet.getRange(2, COL.ORDER_ID);
+  if (!orderIdHeader.getValue()) orderIdHeader.setValue('주문ID');
+
+  var statusHeader = sheet.getRange(2, COL.STATUS);
+  if (!statusHeader.getValue()) statusHeader.setValue('상태');
 }
 
 function findRowByOrderId_(sheet, orderId) {
@@ -117,7 +130,7 @@ function findOrdersByPhone_(sheet, phone) {
 }
 
 function rowToOrder_(sheet, row, rowValues) {
-  var values = rowValues || sheet.getRange(row, 1, 1, COL.ORDER_ID).getValues()[0];
+  var values = rowValues || sheet.getRange(row, 1, 1, COL.STATUS).getValues()[0];
   return {
     timestamp: formatTimestamp_(values[COL.TIMESTAMP - 1]),
     product: String(values[COL.PRODUCT - 1] || ''),
@@ -126,7 +139,8 @@ function rowToOrder_(sheet, row, rowValues) {
     phone: String(values[COL.PHONE - 1] || ''),
     address: String(values[COL.ADDRESS - 1] || ''),
     totalPrice: Number(values[COL.PRICE - 1]) || 0,
-    orderId: String(values[COL.ORDER_ID - 1] || '')
+    orderId: String(values[COL.ORDER_ID - 1] || ''),
+    status: String(values[COL.STATUS - 1] || STATUS_OPTIONS[0])
   };
 }
 
