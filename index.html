@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="./assets/site.css">
 </head>
 <body class="shop-home">
-  <div class="notice-bar"><strong>FRESH NOTICE</strong><span>산지에서 바로 보내는 제철 농산물</span><div class="notice-prices" id="priceTicker" aria-label="실시간 상품 가격"><span>가격 정보를 불러오는 중…</span></div><a href="order-status.html">주문 조회 →</a></div>
+  <div class="notice-bar"><strong>FRESH NOTICE</strong><span>산지에서 바로 보내는 제철 농산물</span><div class="notice-prices" aria-label="실시간 상품 가격"><div class="notice-track" id="priceTicker"><span>가격 정보를 불러오는 중…</span></div></div><a href="order-status.html">주문 조회 →</a></div>
   <header class="header shop-header">
     <a class="brand" href="#top" aria-label="메종드세르 홈"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></a>
     <form class="site-search" id="siteSearch" role="search"><label class="sr-only" for="searchInput">상품 검색</label><input id="searchInput" type="search" placeholder="찾으시는 과일이나 채소를 검색해 보세요"><button type="submit" aria-label="검색">⌕</button></form>
@@ -81,10 +81,14 @@
       var ticker=document.getElementById('priceTicker');
       if(!ticker)return;
       items=items&&items.length?items:fallback.ticker;
-      ticker.innerHTML=items.map(function(i){
+      var html=items.map(function(i){
         var trend=i.trend==='up'?'▲':i.trend==='down'?'▼':'';
         return '<a href="'+toHref(i.url)+'" target="_blank" rel="noopener noreferrer"><b>'+i.category+'</b><span>₩'+Number(i.price).toLocaleString('ko-KR')+'</span><i class="'+(i.trend||'same')+'">'+trend+'</i></a>';
       }).join('');
+      ticker.style.animation='none';
+      ticker.innerHTML=html+html+html+html;
+      void ticker.offsetWidth;
+      ticker.style.animation='';
     }
     function renderCatalog(filter,query){var items=allItems.filter(function(i){return(filter==='전체'||(categoryMap[i.category]||'과일')===filter)&&(!query||i.category.replace(/\s/g,'').indexOf(query.replace(/\s/g,''))>-1)});document.getElementById('catalogGrid').innerHTML=items.map(function(i){return card(i,'제철',true)}).join('');document.getElementById('emptySearch').hidden=!!items.length;}
     function render(data){var fresh=data.seasonNew||fallback.seasonNew,best=data.seasonBest||fallback.seasonBest;allItems=fresh.concat(best);renderTicker(data.ticker);document.getElementById('recommendedGrid').innerHTML=best.concat(fresh).slice(0,4).map(function(i,n){return card(i,n<2?'MD PICK':'추천')}).join('');document.getElementById('newGrid').innerHTML=fresh.map(function(i){return card(i,'NEW')}).join('');document.getElementById('bestGrid').innerHTML=best.map(function(i,n){return card(i,'BEST '+(n+1))}).join('');renderCatalog('전체','');}
