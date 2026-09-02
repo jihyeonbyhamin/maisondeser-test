@@ -1,186 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>메종드세르 | 신선한 계절을 식탁으로</title>
-  <meta name="description" content="제철의 맛과 농가의 정성을 전하는 프리미엄 농산물 셀렉트숍, 메종드세르입니다.">
+  <meta name="description" content="산지에서 고른 제철 농산물을 합리적인 가격으로 전하는 메종드세르입니다.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%91%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script>
     (function(){
-      if(!window.matchMedia('(max-width: 900px)').matches)return;
+      if(!window.matchMedia('(max-width:900px)').matches)return;
       if('scrollRestoration' in history)history.scrollRestoration='manual';
-      document.documentElement.style.scrollBehavior='auto';
       function startAtTop(){window.scrollTo(0,0);}
       startAtTop();
       window.addEventListener('pageshow',function(){
         startAtTop();
         requestAnimationFrame(function(){requestAnimationFrame(startAtTop);});
-        setTimeout(function(){
-          startAtTop();
-          document.documentElement.style.removeProperty('scroll-behavior');
-        },120);
+        setTimeout(startAtTop,120);
       },{once:true});
     })();
   </script>
   <link rel="stylesheet" href="./assets/site.css">
 </head>
-<body>
-  <header class="header"><a class="brand" href="#top"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></a><nav><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a><a href="#story">브랜드</a><a href="#process">선별과 배송</a><a href="#season-new">제철 과일</a><a href="#faq">이용 안내</a></nav><div class="header-actions"><a class="order-cta" href="order.html">직접 주문하기</a><a class="nav-cta" href="#contact">문의하기</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환">🌙</button></div></header>
-  <div class="ticker" id="priceTicker" aria-label="실시간 상품 가격"><div class="ticker-track" id="tickerTrack"><span class="ticker-loading">가격 정보를 불러오는 중…</span></div></div>
-  <main>
-    <section class="hero" id="top"><div class="hero-copy"><p class="eyebrow">FRESH FROM THE FARM · SINCE 2026</p><h1>계절이 가장 맛있는 순간,<br><em>식탁까지 그대로.</em></h1><p class="hero-desc">잘 익은 때를 기다리고, 믿을 수 있는 농가에서 고릅니다. 오늘의 식탁에 가장 신선한 계절을 전해드릴게요.</p><div class="hero-actions"><a class="button primary shop-primary" href="https://shop.coupang.com/A01623310?source=brandstore_sdp_atf&pid=9683948520&viid=95889375997&platform=p&brandId=0&btcEnableForce=false" target="_blank" rel="noopener noreferrer">메종드세르 바로가기 <span>→</span></a><a class="button secondary" href="#season-new">이달의 새로운 과일 <span>↓</span></a><a class="button secondary" href="#season-best">이달의 BEST 과일 <span>↓</span></a></div><div class="trust-row"><span>✓ 산지에서 바로</span><span>✓ 직접 맛보고 선별</span><span>✓ 안전하고 꼼꼼한 포장</span></div></div><div class="hero-visual"><img class="hero-art" src="./assets/bichon-fruit-hero-v2.png" width="1537" height="1023" alt="복숭아와 샤인머스캣 바구니 뒤로 살짝 고개를 내민 하얀 비숑 일러스트" fetchpriority="high"></div></section>
-    <section class="story" id="story"><div class="section-label">01 · OUR STORY</div><div class="story-copy"><h2>좋은 과일은<br>좋은 기다림에서 시작됩니다.</h2><p>과일마다 맛이 차오르는 속도는 다릅니다. 메종드세르는 산지와 계절을 살피고, 직접 맛본 뒤 가장 좋은 순간에만 소개합니다. 이름보다 정직하게 기른 농가를, 화려함보다 한입의 만족을 먼저 생각합니다.</p></div><blockquote>“평범한 하루에도<br>계절의 설렘 한 조각.”</blockquote></section>
-    <section class="farm-feature" aria-label="산지에서 과일을 선별하는 모습"><div class="farm-frame"><img src="./assets/farm-peach-story.png" width="1536" height="1024" alt="복숭아 농장에서 갓 수확한 복숭아를 살피는 농부의 손" loading="lazy"><div class="farm-caption"><span>FROM THE FARM</span><p>좋은 산지에서 시작해,<br>한 알씩 눈으로 확인합니다.</p></div></div></section>
-    <section class="promise" id="promise"><div class="promise-intro"><p class="eyebrow">OUR PROMISE</p><h2>맛있는 한입을 위한<br>세 가지 약속</h2></div><div class="promise-grid"><article><span>01</span><div class="promise-icon">🌱</div><h3>산지의 신선함 그대로</h3><p>복잡한 유통은 덜고, 갓 수확한 생기를 빠르게 전합니다.</p></article><article><span>02</span><div class="promise-icon">👀</div><h3>직접 보고, 맛보고</h3><p>당도와 식감, 상태까지 확인해 자신 있게 권할 과일만 고릅니다.</p></article><article><span>03</span><div class="promise-icon">🎁</div><h3>마지막까지 다정하게</h3><p>상자를 여는 순간까지 온전하도록 하나하나 정성껏 포장합니다.</p></article></div></section>
-    <section class="process" id="process"><div class="process-head"><div><p class="eyebrow">FROM FARM TO TABLE</p><h2>고르는 순간부터<br>도착할 때까지</h2></div><p>신선식품은 짧은 시간보다 정확한 과정이 중요합니다. 과일의 상태와 특성에 맞춰 확인하고, 흔들림과 눌림을 줄이는 방식으로 준비합니다.</p></div><div class="process-track"><article class="process-step"><h3>제철 산지 확인</h3><p>품종과 산지, 수확 시기를 살펴 지금 가장 맛이 오른 상품을 찾습니다.</p><span class="process-meta">SEASON CHECK</span></article><article class="process-step"><h3>맛과 상태 선별</h3><p>당도와 식감은 물론 외관과 무름 정도까지 직접 확인합니다.</p><span class="process-meta">QUALITY SELECT</span></article><article class="process-step"><h3>상품별 맞춤 포장</h3><p>과일의 크기와 단단함에 맞춰 충격과 움직임을 줄여 포장합니다.</p><span class="process-meta">SAFE PACKING</span></article><article class="process-step"><h3>신선하게 전달</h3><p>준비된 상품은 불필요한 대기 없이 출고하며 일정은 상품별로 안내합니다.</p><span class="process-meta">FRESH DELIVERY</span></article></div></section>
-    <section class="season" id="season-new"><div class="season-head"><div><p class="eyebrow">NEW ARRIVAL</p><h2>이달의 새 제철 과일</h2></div><p>지금 맛이 가장 좋은 것들 가운데, 먼저 권하고 싶은 세 가지를 골랐습니다.</p></div><div class="product-grid"><a class="product" data-category="오이" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="오이" hidden><div class="product-icon">🥒</div><span>NEW</span><div class="product-title-row"><h3>오이</h3><span class="product-price">불러오는 중…</span></div><p>한입 베어 물면 산뜻하게, 아삭한 제철 오이</p></a><a class="product" data-category="밤호박" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="밤호박" hidden><div class="product-icon">🎃</div><span>NEW</span><div class="product-title-row"><h3>밤호박</h3><span class="product-price">불러오는 중…</span></div><p>포근한 식감 끝에 은은한 단맛, 제주 밤호박</p></a><a class="product" data-category="감자" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="감자" hidden><div class="product-icon">🥔</div><span>NEW</span><div class="product-title-row"><h3>감자</h3><span class="product-price">불러오는 중…</span></div><p>갓 캐어 더 고소한 강원도 햇감자</p></a></div></section>
-    <section class="season" id="season-best"><div class="season-head"><div><p class="eyebrow">BEST SELLER</p><h2>이번 달 가장 사랑받은 과일</h2></div><p>먼저 맛본 분들이 다시 찾은, 메종드세르의 인기 상품입니다.</p></div><div class="product-grid"><a class="product" data-category="복숭아" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="복숭아" hidden><div class="product-icon">🍑</div><span>BEST</span><div class="product-title-row"><h3>복숭아</h3><span class="product-price">불러오는 중…</span></div><p>아삭한 식감에 꽉 찬 단맛, 딱딱이 복숭아</p></a><a class="product" data-category="옥수수" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="옥수수" hidden><div class="product-icon">🌽</div><span>BEST</span><div class="product-title-row"><h3>옥수수</h3><span class="product-price">불러오는 중…</span></div><p>알알이 쫀득하고 달콤한 강원도 찰옥수수</p></a><a class="product" data-category="완숙 토마토" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><img class="product-photo" alt="완숙 토마토" hidden><div class="product-icon">🍅</div><span>BEST</span><div class="product-title-row"><h3>완숙 토마토</h3><span class="product-price">불러오는 중…</span></div><p>햇살 아래 붉고 단단하게 익은 완숙 토마토</p></a></div></section>
-    <section class="faq" id="faq"><div class="faq-intro"><p class="eyebrow">SHOPPING GUIDE</p><h2>주문 전<br>알아두세요</h2><p>제철 과일은 날씨와 수확 상황에 따라 크기와 빛깔이 조금씩 다를 수 있습니다. 자연스러운 차이까지 맛있게 즐길 수 있도록 필요한 내용을 모았습니다.</p><a class="faq-cta" href="#contact">해결되지 않은 문의 남기기 →</a></div><div class="faq-list"><details open><summary>배송 일정은 어떻게 확인하나요?</summary><p>상품별 수확일과 준비 기간이 달라 정확한 출고 일정은 구매 페이지의 상품 안내에서 확인할 수 있습니다. 산지 상황에 따라 일정이 조정될 때에는 판매처를 통해 안내드립니다.</p></details><details><summary>과일의 크기나 색이 사진과 달라요.</summary><p>자연에서 자란 농산물은 같은 품종이라도 크기와 빛깔에 차이가 있습니다. 상품의 맛과 품질에 영향을 주지 않는 자연스러운 차이는 정상 상품으로 선별합니다.</p></details><details><summary>받은 과일은 어떻게 보관하나요?</summary><p>후숙이 필요한 과일은 서늘한 실온에서 상태를 확인한 뒤 냉장 보관해 주세요. 품종마다 적정 보관법이 다르므로 동봉 안내와 상품 설명을 함께 확인하는 것이 좋습니다.</p></details><details><summary>배송 중 상품이 손상되었다면요?</summary><p>수령 직후 상품과 포장 상태를 사진으로 남긴 뒤 구매하신 판매처의 고객센터로 문의해 주세요. 주문 정보와 함께 접수하면 더욱 빠르게 확인할 수 있습니다.</p></details></div></section>
-    <section class="comments" id="comments"><p class="eyebrow">YOUR VOICE</p><h2>더 맛있는 메종드세르를 위해<br>여러분의 이야기를 들려주세요.</h2><div id="disqus_thread"></div></section>
-    <section class="contact" id="contact"><p class="eyebrow">LET'S WORK TOGETHER</p><h2>대량 주문과 상품 제안, 함께 나눌 이야기가 있다면 편하게 남겨주세요.</h2><form class="contact-form" action="https://formspree.io/f/mbgrqpvg" method="POST"><div class="form-row"><input type="text" name="name" aria-label="회사명 또는 담당자명" placeholder="회사명 / 담당자명" autocomplete="name" required><input type="email" name="email" aria-label="이메일 주소" placeholder="이메일 주소" autocomplete="email" required></div><textarea name="message" rows="4" aria-label="문의 내용" placeholder="문의 내용을 자유롭게 남겨주세요." required></textarea><button class="button primary" type="submit">문의 보내기 <span>→</span></button><p class="form-note" id="formNote" role="status" hidden>문의가 정상적으로 접수되었습니다. 감사합니다.</p></form></section>
+<body class="shop-home">
+  <div class="notice-bar"><strong>FRESH NOTICE</strong><span>산지에서 바로 보내는 제철 농산물</span><div class="notice-prices" id="priceTicker" aria-label="실시간 상품 가격"><span>가격 정보를 불러오는 중…</span></div><a href="order-status.html">주문 조회 →</a></div>
+  <header class="header shop-header">
+    <a class="brand" href="#top" aria-label="메종드세르 홈"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></a>
+    <form class="site-search" id="siteSearch" role="search"><label class="sr-only" for="searchInput">상품 검색</label><input id="searchInput" type="search" placeholder="찾으시는 과일이나 채소를 검색해 보세요"><button type="submit" aria-label="검색">⌕</button></form>
+    <div class="header-actions"><a href="order-status.html">주문조회</a><a class="order-cta" href="order.html">직접 주문</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환">◐</button></div>
+  </header>
+  <nav class="category-nav" aria-label="주요 메뉴"><div class="nav-inner"><a class="category-all" href="#all-products"><span>☰</span> 전체보기</a><a href="sale.html">특가</a><a href="events.html">기획전/이벤트</a><a href="gift.html">선물세트</a><a href="about.html">회사소개</a></div></nav>
+  <main id="top">
+    <section class="market-hero">
+      <div class="hero-copy"><p class="hero-kicker">SEASON'S BEST · DIRECT FROM FARM</p><h1>잘 익은 계절을<br><em>가장 신선하게.</em></h1><p>지금 산지에서 맛이 오른 농산물만 골라<br>부담 없는 가격으로 식탁까지 전합니다.</p><div class="hero-actions"><a class="button primary coupang-cta" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer" aria-label="메종드세르 쿠팡 브랜드숍에서 구매하기"><span class="coupang-icon" aria-hidden="true">C</span><span><small>COUPANG BRAND SHOP</small>쿠팡에서 바로 구매</span><b aria-hidden="true">→</b></a><a class="button ghost" href="order.html">바로 주문하기</a></div><ul class="hero-points"><li>산지직송</li><li>제철선별</li><li>꼼꼼포장</li></ul></div>
+      <div class="hero-visual"><img src="./assets/bichon-fruit-hero-v2.png" width="1537" height="1023" alt="제철 과일과 메종드세르 비숑 캐릭터" fetchpriority="high"><div class="hero-badge"><strong>오늘도</strong><span>신선하게 출발해요</span></div></div>
+    </section>
+    <section class="quick-categories" aria-label="홈페이지 바로가기"><a href="#best-products"><span>🏆</span><b>베스트상품</b><small>고객이 먼저 찾은 상품</small></a><a href="#new-products"><span>✨</span><b>새로운 상품</b><small>이번 주 새로 도착했어요</small></a><a href="#all-products"><span>🛒</span><b>전체상품</b><small>판매 중인 상품 한눈에</small></a><a href="#guide"><span>🚚</span><b>이용안내</b><small>배송과 주문 전 확인</small></a><a href="#contact"><span>📦</span><b>대량주문 문의</b><small>기업·단체 주문 상담</small></a></section>
+    <section class="products-section" id="recommended"><div class="section-head"><div><p>MAISON'S PICK</p><h2>메종드세르 추천 상품</h2><span>지금 가장 맛있고, 자신 있게 권하는 상품이에요.</span></div><a href="#all-products">전체 상품 보기 →</a></div><div class="product-grid" id="recommendedGrid"></div></section>
+    <section class="wide-promo" id="story"><div><p>FARM TO YOUR TABLE</p><h2>농가의 시간을 줄이고,<br>신선함은 더 가까이.</h2><span>산지와 계절을 살펴 잘 자란 농산물을 고르고, 복잡한 유통을 덜어 빠르게 전합니다.</span><a href="#brand-story">브랜드 이야기 보기 →</a></div><img src="./assets/farm-peach-story.png" width="1536" height="1024" alt="산지에서 복숭아를 선별하는 모습" loading="lazy"></section>
+    <section class="products-section soft-section" id="new-products"><div class="section-head"><div><p>NEW ARRIVAL</p><h2>새로 들어왔어요</h2><span>이번 주 산지에서 새롭게 도착한 제철 상품입니다.</span></div></div><div class="product-grid" id="newGrid"></div></section>
+    <section class="products-section" id="best-products"><div class="section-head"><div><p>WEEKLY BEST</p><h2>가장 많이 찾는 상품</h2><span>먼저 맛본 고객이 다시 선택한 인기 상품을 모았어요.</span></div></div><div class="product-grid" id="bestGrid"></div></section>
+    <section class="brand-story" id="brand-story"><div class="story-number">01</div><div><p class="eyebrow">OUR STANDARD</p><h2>화려한 말보다<br>한입의 만족을 먼저 봅니다.</h2></div><p>과일마다 맛이 차오르는 때는 다릅니다. 메종드세르는 산지와 수확 시기를 살피고, 당도와 식감·상태를 확인한 뒤 소개합니다. 상자를 여는 순간까지 온전하도록 상품에 맞는 방식으로 정성껏 준비합니다.</p><div class="standards"><span><b>01</b>제철 산지 확인</span><span><b>02</b>맛과 상태 선별</span><span><b>03</b>상품별 맞춤 포장</span><span><b>04</b>빠른 산지 출고</span></div></section>
+    <section class="catalog" id="all-products"><div class="section-head"><div><p>ALL PRODUCTS</p><h2>모든 상품을 한눈에</h2><span>카테고리를 눌러 원하는 상품만 빠르게 확인하세요.</span></div></div><div class="filter-tabs" role="tablist"><button class="active" data-filter="전체" type="button">전체</button><button data-filter="과일" type="button">과일</button><button data-filter="채소" type="button">채소</button></div><div class="catalog-grid" id="catalogGrid"></div><p class="empty-search" id="emptySearch" hidden>검색 결과가 없습니다. 다른 상품명을 입력해 주세요.</p></section>
+    <section class="guide" id="guide"><div class="guide-title"><p>SHOPPING GUIDE</p><h2>처음 주문하시나요?</h2><span>신선식품이라 꼭 알아두면 좋은 내용을 모았습니다.</span></div><div class="guide-list"><details open><summary>배송 일정은 어떻게 확인하나요?</summary><p>상품별 수확일과 준비 기간이 달라 구매 페이지의 출고 안내를 확인해 주세요. 산지 상황으로 일정이 달라질 때에는 판매처를 통해 안내드립니다.</p></details><details><summary>과일의 크기나 색이 사진과 달라요.</summary><p>자연에서 자란 농산물은 같은 품종이라도 크기와 빛깔에 차이가 있습니다. 맛과 품질에 영향을 주지 않는 자연스러운 차이는 정상 상품입니다.</p></details><details><summary>배송 중 상품이 손상되었다면요?</summary><p>수령 직후 상품과 포장 상태를 사진으로 남긴 뒤 구매하신 판매처 고객센터로 문의해 주세요. 주문 정보와 함께 접수하면 빠르게 확인할 수 있습니다.</p></details></div></section>
+    <section class="comments" id="comments"><div><p>YOUR VOICE</p><h2>더 맛있는 메종드세르를 위해<br>이야기를 들려주세요.</h2><span>상품과 서비스에 대한 의견을 자유롭게 남겨주세요.</span></div><div id="disqus_thread"></div></section>
+    <section class="contact" id="contact"><div><p>PARTNERSHIP & BULK ORDER</p><h2>대량 주문이나 상품 제안이 있으신가요?</h2><span>필요한 품목과 수량을 남겨주시면 확인 후 안내드릴게요.</span></div><form class="contact-form" action="https://formspree.io/f/mbgrqpvg" method="POST"><input type="text" name="name" aria-label="담당자명" placeholder="회사명 / 담당자명" required><input type="email" name="email" aria-label="이메일" placeholder="이메일 주소" required><textarea name="message" rows="3" aria-label="문의 내용" placeholder="품목, 수량, 희망 일정을 적어주세요." required></textarea><button class="button primary" type="submit">문의 보내기 →</button><p id="formNote" role="status" hidden></p></form></section>
   </main>
-  <footer><div class="brand footer-brand"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></div><div class="footer-links"><a href="order.html">직접 주문</a><a href="#process">선별과 배송</a><a href="#faq">이용 안내</a><a href="#contact">문의하기</a></div><p>신선한 계절을 고르고, 정성껏 전합니다.</p><p class="copyright">© 2026 MAISON DE SERRE. ALL RIGHTS RESERVED.</p></footer>
+  <footer><div class="footer-top"><div class="brand footer-brand"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></div><div class="footer-links"><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a><a href="#guide">이용 안내</a><a href="#contact">문의하기</a></div></div><div class="footer-info"><p>신선한 계절을 고르고, 정성껏 전합니다.</p><p>고객 문의 · 0108hamin@gmail.com</p><p>© 2026 MAISON DE SERRE. ALL RIGHTS RESERVED.</p></div></footer>
   <script>
-    (function(){
-      function isMobileDevice(){
-        return /Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(navigator.userAgent)||window.matchMedia('(max-width: 900px)').matches;
-      }
-      function toDeviceUrl(href){
-        try{
-          var url=new URL(href,window.location.href);
-          if(/(^|\.)coupang\.com$/.test(url.hostname)){
-            url.searchParams.set('platform',isMobileDevice()?'m':'p');
-          }
-          return url.toString();
-        }catch(e){return href;}
-      }
-      window.CoupangLink={toDeviceUrl:toDeviceUrl};
-      document.querySelectorAll('a[href*="coupang.com"]').forEach(function(a){
-        a.setAttribute('href',toDeviceUrl(a.getAttribute('href')));
-      });
-    })();
-    (function(){
-      var track=document.getElementById('tickerTrack');
-      var seasonCards=document.querySelectorAll('.product[data-category]');
-      var fallbackTicker=[
-        {category:'딱딱이 복숭아',price:15900,url:'https://shop.coupang.com/A01623310',trend:'same'},
-        {category:'찰옥수수',price:9900,url:'https://shop.coupang.com/A01623310',trend:'same'},
-        {category:'수박',price:22900,url:'https://shop.coupang.com/A01623310',trend:'same'}
-      ];
-      function toHref(url){
-        return window.CoupangLink?window.CoupangLink.toDeviceUrl(url):url;
-      }
-      function renderTicker(items){
-        if(!track)return;
-        if(!items||!items.length)items=fallbackTicker;
-        var trendMark={up:'▲',down:'▼',same:''};
-        var html=items.map(function(item){
-          var mark=trendMark[item.trend]||'';
-          var trendClass=item.trend==='up'?'up':item.trend==='down'?'down':'';
-          return '<a class="ticker-item" href="'+toHref(item.url)+'" target="_blank" rel="noopener noreferrer">'+
-            '<span class="tk-name">'+item.category+'</span>'+
-            '<span class="tk-price">₩'+Number(item.price).toLocaleString('ko-KR')+'</span>'+
-            (mark?'<span class="tk-trend '+trendClass+'">'+mark+'</span>':'')+
-          '</a>';
-        }).join('');
-        track.innerHTML=html+html;
-      }
-      function renderSeason(items){
-        if(!items||!items.length||!seasonCards.length)return;
-        var byCategory={};
-        items.forEach(function(i){byCategory[i.category]=i;});
-        seasonCards.forEach(function(card){
-          var info=byCategory[card.getAttribute('data-category')];
-          if(!info)return;
-          var priceEl=card.querySelector('.product-price');
-          if(priceEl){
-            priceEl.textContent=(info.optionLabel?info.optionLabel+' · ':'')+'₩'+Number(info.price).toLocaleString('ko-KR');
-          }
-          if(info.url)card.setAttribute('href',toHref(info.url));
-          var img=card.querySelector('.product-photo');
-          if(img&&info.image){
-            img.onerror=function(){img.hidden=true;card.classList.remove('has-photo');};
-            img.src=info.image;
-            img.hidden=false;
-            card.classList.add('has-photo');
-          }
-        });
-      }
-      function load(){
-        fetch('./data/prices.json?t='+Date.now())
-          .then(function(res){return res.ok?res.json():Promise.reject();})
-          .then(function(data){
-            renderTicker(data.ticker);
-            renderSeason((data.seasonNew||[]).concat(data.seasonBest||[]));
-          })
-          .catch(function(){renderTicker(fallbackTicker);});
-      }
-      load();
-      setInterval(load,5*60*1000);
-    })();
+  (function(){
+    function isMobileDevice(){return /Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(navigator.userAgent)||window.matchMedia('(max-width:900px)').matches;}
+    function toDeviceUrl(href){
+      try{
+        var url=new URL(href,window.location.href);
+        if(/(^|\.)coupang\.com$/.test(url.hostname))url.searchParams.set('platform',isMobileDevice()?'m':'p');
+        return url.toString();
+      }catch(e){return href;}
+    }
+    window.CoupangLink={toDeviceUrl:toDeviceUrl};
+    document.querySelectorAll('a[href*="coupang.com"]').forEach(function(link){link.href=toDeviceUrl(link.href);});
+  })();
+  (function(){
+    var fallback={ticker:[
+      {category:'딱딱이 복숭아',price:15900,url:'https://shop.coupang.com/A01623310',trend:'same'},
+      {category:'찰옥수수',price:9900,url:'https://shop.coupang.com/A01623310',trend:'same'},
+      {category:'수박',price:22900,url:'https://shop.coupang.com/A01623310',trend:'same'}
+    ],seasonNew:[
+      {category:'오이',price:9900,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/b93b/a0599b93b08096a7bf478fd8eb38f6bc69648525eb288eece659ee6c5223.png'},
+      {category:'밤호박',price:7510,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/image_audit/stage/manual/3a301a4f2680c7fb11f658d37fcf224ca1bc800a5827ff9dca4ede02a401_1786413141255.png'},
+      {category:'감자',price:9900,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/76ed/c7127dfe732cbc4e19494f57a9dea2fea47f0380203e39a90b2c93f50351.png'}
+    ],seasonBest:[
+      {category:'복숭아',price:11600,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/413b/4cc61289d3016da44b4131ef4c963e9874995b9b950d003f7e78f20e204f.png'},
+      {category:'옥수수',price:7890,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/4044/6a9cc79682ea9a428bfa57b4d12c1b9389c7ec34d9c4f9b971961fa2df90.png'},
+      {category:'완숙 토마토',price:17890,url:'order.html',image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/fd60/67156611111ef4f49a156330e91f0d531f7ae4b79a7ec8f027d838db294e.png'}
+    ]};
+    var categoryMap={'오이':'채소','밤호박':'채소','감자':'채소','복숭아':'과일','옥수수':'채소','완숙 토마토':'채소'},emoji={'오이':'🥒','밤호박':'🎃','감자':'🥔','복숭아':'🍑','옥수수':'🌽','완숙 토마토':'🍅'},copy={'오이':'산뜻하고 아삭한 제철 오이','밤호박':'포근하고 달콤한 미니 밤호박','감자':'포슬하고 고소한 햇감자','복숭아':'아삭하고 달콤한 제철 복숭아','옥수수':'알알이 쫀득한 찰옥수수','완숙 토마토':'붉고 단단하게 익은 완숙 토마토'},allItems=[];
+    function toHref(url){return window.CoupangLink?window.CoupangLink.toDeviceUrl(url):url;}
+    function card(i,label,compact){var type=categoryMap[i.category]||'과일',href=toHref(i.url||'order.html'),image=i.image?'<img src="'+i.image+'" alt="'+i.category+'" loading="lazy" onerror="this.parentNode.classList.add(\'image-error\')">':'<div class="fallback-fruit">'+(emoji[i.category]||'🍎')+'</div>';return '<a class="product-card'+(compact?' compact':'')+'" data-type="'+type+'" data-name="'+i.category+'" href="'+href+'" target="'+(href.indexOf('http')===0?'_blank':'_self')+'" rel="noopener noreferrer"><div class="product-image">'+image+'<span class="product-label">'+label+'</span></div><div class="product-info"><small>'+type+' · 산지직송</small><h3>'+i.category+'</h3><p>'+copy[i.category]+'</p><strong>'+Number(i.price).toLocaleString('ko-KR')+'원~</strong></div></a>';}
+    function renderTicker(items){
+      var ticker=document.getElementById('priceTicker');
+      if(!ticker)return;
+      items=items&&items.length?items:fallback.ticker;
+      ticker.innerHTML=items.map(function(i){
+        var trend=i.trend==='up'?'▲':i.trend==='down'?'▼':'';
+        return '<a href="'+toHref(i.url)+'" target="_blank" rel="noopener noreferrer"><b>'+i.category+'</b><span>₩'+Number(i.price).toLocaleString('ko-KR')+'</span><i class="'+(i.trend||'same')+'">'+trend+'</i></a>';
+      }).join('');
+    }
+    function renderCatalog(filter,query){var items=allItems.filter(function(i){return(filter==='전체'||(categoryMap[i.category]||'과일')===filter)&&(!query||i.category.replace(/\s/g,'').indexOf(query.replace(/\s/g,''))>-1)});document.getElementById('catalogGrid').innerHTML=items.map(function(i){return card(i,'제철',true)}).join('');document.getElementById('emptySearch').hidden=!!items.length;}
+    function render(data){var fresh=data.seasonNew||fallback.seasonNew,best=data.seasonBest||fallback.seasonBest;allItems=fresh.concat(best);renderTicker(data.ticker);document.getElementById('recommendedGrid').innerHTML=best.concat(fresh).slice(0,4).map(function(i,n){return card(i,n<2?'MD PICK':'추천')}).join('');document.getElementById('newGrid').innerHTML=fresh.map(function(i){return card(i,'NEW')}).join('');document.getElementById('bestGrid').innerHTML=best.map(function(i,n){return card(i,'BEST '+(n+1))}).join('');renderCatalog('전체','');}
+    function load(){fetch('./data/prices.json?t='+Date.now()).then(function(r){return r.ok?r.json():Promise.reject()}).then(render).catch(function(){render(fallback)});}
+    load();
+    setInterval(load,5*60*1000);
+    document.querySelectorAll('.filter-tabs button').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.filter-tabs button').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');renderCatalog(btn.dataset.filter,document.getElementById('searchInput').value.trim())})});
+    document.querySelectorAll('.quick-categories [data-filter]').forEach(function(link){link.addEventListener('click',function(){setTimeout(function(){var target=document.querySelector('.filter-tabs [data-filter="'+link.dataset.filter+'"]');if(target)target.click()},100)})});
+    document.getElementById('siteSearch').addEventListener('submit',function(e){e.preventDefault();var q=document.getElementById('searchInput').value.trim();document.querySelector('.filter-tabs [data-filter="전체"]').click();renderCatalog('전체',q);document.getElementById('all-products').scrollIntoView({behavior:'smooth'})});
+  })();
+  (function(){var root=document.documentElement,btn=document.getElementById('themeToggle');function apply(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀':'◐';btn.setAttribute('aria-label',t==='dark'?'라이트 모드로 전환':'다크 모드로 전환')}apply(localStorage.getItem('theme')||'light');btn.addEventListener('click',function(){var n=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(n);localStorage.setItem('theme',n)})})();
+  (function(){var form=document.querySelector('.contact-form'),note=document.getElementById('formNote');form.addEventListener('submit',function(e){e.preventDefault();var b=form.querySelector('button');b.disabled=true;fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw Error();form.reset();note.hidden=false;note.textContent='문의가 접수되었습니다. 확인 후 연락드릴게요.'}).catch(function(){note.hidden=false;note.textContent='전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'}).finally(function(){b.disabled=false})})})();
   </script>
   <script>
-    var disqus_config = function () {
-      this.page.url = window.location.href;
-      this.page.identifier = 'maisondeserre-home';
-    };
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://maisondeser-1.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
+    var disqus_config=function(){this.page.url=window.location.href;this.page.identifier='maisondeserre-home';};
+    (function(){var d=document,s=d.createElement('script');s.src='https://maisondeser-1.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <script>
-    (function(){
-      var root=document.documentElement;
-      var btn=document.getElementById('themeToggle');
-      function apply(t){
-        root.setAttribute('data-theme',t);
-        btn.textContent=t==='dark'?'☀️':'🌙';
-        btn.setAttribute('aria-label',t==='dark'?'라이트 모드로 전환':'다크 모드로 전환');
-      }
-      var stored=localStorage.getItem('theme');
-      apply(stored||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
-      btn.addEventListener('click',function(){
-        var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-        apply(next);
-        localStorage.setItem('theme',next);
-      });
-    })();
-    (function(){
-      var form=document.querySelector('.contact-form');
-      var note=document.getElementById('formNote');
-      if(!form)return;
-      form.addEventListener('submit',function(e){
-        e.preventDefault();
-        var submitBtn=form.querySelector('button[type="submit"]');
-        submitBtn.disabled=true;
-        fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-          .then(function(res){
-            if(res.ok){
-              form.reset();
-              note.hidden=false;
-              note.textContent='문의가 정상적으로 접수되었습니다. 감사합니다.';
-            }else{
-              note.hidden=false;
-              note.textContent='전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
-            }
-          })
-          .catch(function(){
-            note.hidden=false;
-            note.textContent='전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
-          })
-          .finally(function(){
-            submitBtn.disabled=false;
-          });
-      });
-    })();
-  </script>
+  <noscript>댓글을 보려면 JavaScript를 활성화해 주세요.</noscript>
 </body>
 </html>
