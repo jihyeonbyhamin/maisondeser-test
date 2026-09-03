@@ -35,6 +35,14 @@
       <div class="hero-copy"><p class="hero-kicker">SEASON'S BEST · DIRECT FROM FARM</p><h1>잘 익은 계절을<br><em>가장 신선하게.</em></h1><p>지금 산지에서 맛이 오른 농산물만 골라<br>부담 없는 가격으로 식탁까지 전합니다.</p><div class="hero-actions"><a class="button primary coupang-cta" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer" aria-label="메종드세르 쿠팡 브랜드숍에서 구매하기"><span class="coupang-icon" aria-hidden="true">C</span><span><small>COUPANG BRAND SHOP</small>쿠팡에서 바로 구매</span><b aria-hidden="true">→</b></a><a class="button ghost" href="order.html">바로 주문하기</a></div><ul class="hero-points"><li>산지직송</li><li>제철선별</li><li>꼼꼼포장</li></ul></div>
       <div class="hero-visual"><img src="./assets/bichon-fruit-hero-v2.png" width="1537" height="1023" alt="제철 과일과 메종드세르 비숑 캐릭터" fetchpriority="high"><div class="hero-badge"><strong>오늘도</strong><span>신선하게 출발해요</span></div></div>
     </section>
+    <section class="banner-carousel" aria-label="메종드세르 주요 안내 배너" aria-roledescription="carousel">
+      <div class="banner-viewport"><div class="banner-track" id="bannerTrack">
+        <a class="banner-slide" href="order.html" aria-label="당일 주문과 당일 배송 안내"><img src="./assets/banner-same-day.png" width="1080" height="1080" alt="오전 7시 주문 건까지 당일 출발하는 당일 주문·배송 안내"></a>
+        <a class="banner-slide" href="gift.html" aria-label="명절 과일 선물세트 보기"><img src="./assets/banner-gift-set.png" width="1080" height="1080" alt="사과, 배, 샤인머스캣, 감으로 구성된 명절 과일 선물세트"></a>
+      </div></div>
+      <button class="banner-arrow banner-prev" type="button" aria-label="이전 배너">‹</button><button class="banner-arrow banner-next" type="button" aria-label="다음 배너">›</button>
+      <div class="banner-dots" aria-label="배너 선택"><button class="active" type="button" aria-label="첫 번째 배너 보기" aria-current="true"></button><button type="button" aria-label="두 번째 배너 보기"></button></div>
+    </section>
     <section class="quick-categories" aria-label="홈페이지 바로가기"><a href="#best-products"><span>🏆</span><b>베스트상품</b><small>고객이 먼저 찾은 상품</small></a><a href="#new-products"><span>✨</span><b>새로운 상품</b><small>이번 주 새로 도착했어요</small></a><a href="#all-products"><span>🛒</span><b>전체상품</b><small>판매 중인 상품 한눈에</small></a><a href="#guide"><span>🚚</span><b>이용안내</b><small>배송과 주문 전 확인</small></a><a href="#contact"><span>📦</span><b>대량주문 문의</b><small>기업·단체 주문 상담</small></a></section>
     <section class="products-section" id="recommended"><div class="section-head"><div><p>MAISON'S PICK</p><h2>메종드세르 추천 상품</h2><span>지금 가장 맛있고, 자신 있게 권하는 상품이에요.</span></div><a href="#all-products">전체 상품 보기 →</a></div><div class="product-grid" id="recommendedGrid"></div></section>
     <section class="wide-promo" id="story"><div><p>FARM TO YOUR TABLE</p><h2>농가의 시간을 줄이고,<br>신선함은 더 가까이.</h2><span>산지와 계절을 살펴 잘 자란 농산물을 고르고, 복잡한 유통을 덜어 빠르게 전합니다.</span><a href="#brand-story">브랜드 이야기 보기 →</a></div><img src="./assets/farm-peach-story.png" width="1536" height="1024" alt="산지에서 복숭아를 선별하는 모습" loading="lazy"></section>
@@ -49,6 +57,14 @@
   <nav class="mobile-dock" aria-label="모바일 빠른 메뉴"><a href="#top"><span>⌂</span><b>홈</b></a><a href="#all-products"><span>☰</span><b>카테고리</b></a><a class="dock-shop" href="https://shop.coupang.com/A01623310" target="_blank" rel="noopener noreferrer"><span>C</span><b>쿠팡구매</b></a><a href="order-status.html"><span>▤</span><b>주문조회</b></a><a href="#contact"><span>· · ·</span><b>문의</b></a></nav>
   <footer><div class="footer-top"><div class="brand footer-brand"><span class="brand-mark">M</span><span>MAISON DE SERRE<small>메종드세르</small></span></div><div class="footer-links"><a href="order.html">직접 주문</a><a href="order-status.html">주문 조회</a><a href="#guide">이용 안내</a><a href="#contact">문의하기</a></div></div><div class="footer-info"><p>신선한 계절을 고르고, 정성껏 전합니다.</p><p>고객 문의 · 0108hamin@gmail.com</p><p>© 2026 MAISON DE SERRE. ALL RIGHTS RESERVED.</p></div></footer>
   <script>
+  (function(){
+    var carousel=document.querySelector('.banner-carousel'),track=document.getElementById('bannerTrack');if(!carousel||!track)return;
+    var slides=track.children,dots=carousel.querySelectorAll('.banner-dots button'),index=0,timer;
+    function show(next,manual){index=(next+slides.length)%slides.length;track.style.transform='translateX(-'+(index*100)+'%)';dots.forEach(function(dot,i){dot.classList.toggle('active',i===index);if(i===index)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});if(manual)restart()}
+    function start(){if(slides.length>1&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(function(){show(index+1,false)},5000)}function stop(){clearInterval(timer)}function restart(){stop();start()}
+    carousel.querySelector('.banner-prev').addEventListener('click',function(){show(index-1,true)});carousel.querySelector('.banner-next').addEventListener('click',function(){show(index+1,true)});dots.forEach(function(dot,i){dot.addEventListener('click',function(){show(i,true)})});
+    carousel.addEventListener('mouseenter',stop);carousel.addEventListener('mouseleave',start);carousel.addEventListener('focusin',stop);carousel.addEventListener('focusout',start);document.addEventListener('visibilitychange',function(){document.hidden?stop():restart()});start();
+  })();
   (function(){
     function isMobileDevice(){return /Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(navigator.userAgent)||window.matchMedia('(max-width:900px)').matches;}
     function toDeviceUrl(href){
