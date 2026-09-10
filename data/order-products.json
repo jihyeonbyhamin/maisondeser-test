@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-10T02:23:02.760Z",
+  "updatedAt": "2026-09-10T02:35:09.049Z",
   "products": [
     {
       "category": "수박",
@@ -44,22 +44,22 @@
     {
       "category": "바다장어",
       "label": "장어 1kg",
-      "price": 13900
+      "price": 14500
     },
     {
       "category": "바다장어",
       "label": "장어 2kg",
-      "price": 23900
+      "price": 24900
     },
     {
       "category": "바다장어",
       "label": "장어 3kg",
-      "price": 32900
+      "price": 34900
     },
     {
       "category": "바다장어",
       "label": "장어 5kg",
-      "price": 65600
+      "price": 54900
     },
     {
       "category": "자두",
