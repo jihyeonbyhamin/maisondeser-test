@@ -25,6 +25,9 @@ var STATUS_OPTIONS = ['입금대기', '입금확인', '취소'];
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
+    // CS 상담 탭 (scripts/cs-assistant.gs)
+    if (String(data.action || '').indexOf('cs') === 0) return handleCsAction_(data);
+
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
 
     if (data.action === 'note') {

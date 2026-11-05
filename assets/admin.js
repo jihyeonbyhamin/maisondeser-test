@@ -59,5 +59,6 @@
   $('#saveCategoriesBtn').onclick=function(){saveSiteData('categories','#categorySaveNote')};
   $('#primaryColor').oninput=function(){$('#primaryColorText').value=this.value};$('#primaryColorText').oninput=function(){if(/^#[0-9a-f]{6}$/i.test(this.value))$('#primaryColor').value=this.value};
   $('#saveDesignBtn').onclick=function(){saveSiteData('settings','#designSaveNote')};
+  window.mdsAdmin={api:api,toast:toast,isLoggedIn:function(){return !!state.adminKey&&!$('#adminPanel').hidden}};
   initTheme();renderDesign();renderCategories();if(state.adminKey)login().catch(function(){showLogin('다시 로그인해주세요.')});else showLogin();
 })();
